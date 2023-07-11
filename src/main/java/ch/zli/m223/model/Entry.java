@@ -20,7 +20,7 @@ public class Entry {
   @Column(nullable = false)
   private LocalDateTime checkOut;
 
-  @ManyToMany
+  @ManyToMany(mappedBy = "entries")
   private Set<Tag> tags;
 
   @ManyToOne

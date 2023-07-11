@@ -11,25 +11,25 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(readOnly = true)
-    private Long tagId;
+    private Long id;
 
     @Column(nullable = false)
     private String tagTitle;
 
-    @ManyToMany(mappedBy = "tags")
+    @ManyToMany
     @JoinTable(
         name = "entry_tag",
-        joinColumns = @JoinColumn(name = "id"),
+        joinColumns = @JoinColumn(name = "entryId"),
         inverseJoinColumns = @JoinColumn(name = "tagId")
     )
     private Set<Entry> entries;
 
-    public Long getTagId() {
-        return tagId;
+    public Long getId() {
+        return id;
     }
 
-    public void setTagId(Long tagId) {
-        this.tagId = tagId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTagTitle() {
