@@ -31,6 +31,11 @@ public class EntryService {
         entityManager.remove(query.getSingleResult());
         return entry.getId() + " deleted!";
     }
+
+    @Transactional
+    public Entry editEntry(Entry entry) {
+        var query = entityManager.createQuery("FROM Entry WHERE id=")
+    }
     
     public Entry findById(Long id) {
         return entityManager.find(Entry.class, id);
