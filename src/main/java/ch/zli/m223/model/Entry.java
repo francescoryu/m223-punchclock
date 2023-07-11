@@ -1,6 +1,8 @@
 package ch.zli.m223.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Min;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -64,5 +66,11 @@ public class Entry {
 
   public void setCategory(Category category) {
       this.category = category;
+  }
+
+  @Schema(hidden = true)
+  @AssertTrue(message = "Checkin is ahead of Checkout")
+  private boolean isCheckOutAfterCheckIn() {
+    return this.checkOut.isAfter(this.checkIn);
   }
 }
