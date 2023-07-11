@@ -24,4 +24,13 @@ public class EntryService {
         var query = entityManager.createQuery("FROM Entry", Entry.class);
         return query.getResultList();
     }
+
+    public String deleteEntry(Entry entry) {
+        entityManager.remove(entry);
+        return entry.getId() + " deleted!";
+    }
+    
+    public Entry findById(Long id) {
+        return entityManager.find(Entry.class, id);
+    }    
 }
