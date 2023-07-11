@@ -1,5 +1,7 @@
 package ch.zli.m223.model;
 
+import java.util.Set;
+
 import javax.persistence.*;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -14,12 +16,19 @@ public class Category {
   @Column(nullable = false)
   private String categoryTitle;
 
+  @OneToMany(mappedBy = "category")
+  private Set<Entry> entries;
+
   public Long getCategoryId() {
       return categoryId;
   }
 
   public void setCategoryId(Long categoryId) {
       this.categoryId = categoryId;
+  }
+
+  public void setEntries(Set<Entry> entries) {
+      this.entries = entries;
   }
 
   public String getCategoryTitle() {
@@ -29,4 +38,10 @@ public class Category {
   public void setCategoryTitle(String categoryTitle) {
       this.categoryTitle = categoryTitle;
   }
+
+  public Set<Entry> getEntries() {
+      return entries;
+  }
+
+  
 }
