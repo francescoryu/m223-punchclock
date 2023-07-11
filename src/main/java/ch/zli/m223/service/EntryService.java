@@ -29,14 +29,19 @@ public class EntryService {
     public String deleteEntry(Entry entry) {
         var query = entityManager.createQuery("FROM Entry WHERE id=" + String.valueOf(entry.getId()));
         entityManager.remove(query.getSingleResult());
-        return entry.getId() + " deleted!";
+        return "" + entry.getId() + " deleted!";
     }
 
     @Transactional
-    public Entry editEntry(Entry entry) {
-        var query = entityManager.createQuery("FROM Entry WHERE id=")
+    public Entry editEntry(Long id, Entry updatedEntry, Entry entry) {
+        updatedEntry = findById(id);
+        updatedEntry.setCheckIn(entry.getCheckIn());
+        updatedEntry.setCheckOut(entry.getCheckOut());
+        entityManager.merge(updatedEntry);
+        return updatedEntry;
     }
     
+    @Transactional
     public Entry findById(Long id) {
         return entityManager.find(Entry.class, id);
     }    

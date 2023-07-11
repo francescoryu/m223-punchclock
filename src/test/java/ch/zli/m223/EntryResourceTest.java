@@ -18,4 +18,12 @@ public class EntryResourceTest {
              .body(is("[]"));
     }
 
+
+    @Test
+    public void textDeleteEndpoint() {
+        given()
+        .when().get("http://127.0.0.1:8080/entries/1")
+        .then()
+            .statusCode(204);
+    }
 }
